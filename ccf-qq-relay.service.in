@@ -1,0 +1,18 @@
+[Unit]
+Description=CCFOLIA channel notifications for OneBot v11
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@WORKING_DIRECTORY@
+ExecStart=@PYTHON@ @RELAY@ --config @CONFIG@
+EnvironmentFile=-@ENVIRONMENT_FILE@
+Environment=PYTHONUNBUFFERED=1
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
